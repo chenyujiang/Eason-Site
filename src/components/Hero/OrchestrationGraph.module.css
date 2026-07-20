@@ -1,0 +1,40 @@
+.wrap {
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+  transform-style: preserve-3d;
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node:focus {
+  outline: none;
+}
+
+.centerLabel {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 500;
+  fill: var(--text);
+  letter-spacing: 0.06em;
+  pointer-events: none;
+}
+
+.nodeLabel,
+.nodeLabelActive {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  transition: fill 160ms var(--ease-out);
+}
+
+.nodeLabel {
+  fill: var(--text-muted);
+}
+
+.nodeLabelActive {
+  fill: var(--accent-amber);
+}

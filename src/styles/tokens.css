@@ -1,0 +1,40 @@
+:root {
+  --bg: #0b0f14;
+  --surface: #131922;
+  --surface-raised: #1a2129;
+  --text: #e7ecf2;
+  --text-muted: #8894a3;
+  --accent-cyan: #4fd1c5;
+  --accent-cyan-dim: #2d7a72;
+  --accent-amber: #f5a623;
+  --accent-amber-dim: #8a5c14;
+  --hairline: #2a323d;
+  --danger: #e5484d;
+
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  --step-caption: clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem);
+  --step-body: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+  --step-lead: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --step-h2: clamp(1.7rem, 1.4rem + 1.5vw, 2.4rem);
+  --step-h1: clamp(2.6rem, 1.9rem + 3.5vw, 4.8rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+  --space-7: 6.5rem;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 160ms;
+  --duration-med: 420ms;
+
+  --max-width: 72rem;
+}
