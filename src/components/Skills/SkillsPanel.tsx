@@ -19,8 +19,10 @@ export function SkillsPanel({ reducedMotion }: { reducedMotion: boolean }) {
             return (
               <button
                 key={category.id}
+                id={`skill-tab-${category.id}`}
                 role="tab"
                 aria-selected={isActive}
+                aria-controls="skill-panel"
                 className={isActive ? styles.tabActive : styles.tab}
                 onClick={() => setActiveId(category.id)}
               >
@@ -31,7 +33,12 @@ export function SkillsPanel({ reducedMotion }: { reducedMotion: boolean }) {
           })}
         </div>
 
-        <div className={styles.panel} role="tabpanel">
+        <div
+          className={styles.panel}
+          id="skill-panel"
+          role="tabpanel"
+          aria-labelledby={`skill-tab-${activeId}`}
+        >
           <AnimatePresence mode="wait">
             <motion.ul
               key={active.id}

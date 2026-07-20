@@ -126,27 +126,9 @@ export function OrchestrationGraph({
           })}
 
           {!reducedMotion && (
-            <motion.circle
-              r={3}
-              fill="var(--accent-amber)"
-              animate={{
-                cx: [
-                  cx + radius,
-                  cx,
-                  cx - radius,
-                  cx,
-                  cx + radius,
-                ],
-                cy: [
-                  cy,
-                  cy + radius,
-                  cy,
-                  cy - radius,
-                  cy,
-                ],
-              }}
-              transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-            />
+            <g className={styles.orbitGroup} style={{ transformOrigin: `${cx}px ${cy}px` }}>
+              <circle cx={cx + radius} cy={cy} r={3} fill="var(--accent-amber)" />
+            </g>
           )}
 
           <circle cx={cx} cy={cy} r={centerR} fill="var(--surface-raised)" stroke="var(--accent-cyan)" strokeWidth={1.5} />
@@ -170,7 +152,6 @@ export function OrchestrationGraph({
                 onFocus={() => setActive(n.id)}
                 onBlur={() => setActive(null)}
                 tabIndex={0}
-                role="button"
                 aria-label={n.label}
               >
                 <circle

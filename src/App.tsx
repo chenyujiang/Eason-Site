@@ -14,7 +14,10 @@ function App() {
 
   return (
     <>
-      <main>
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      <main id="main-content">
         <Hero reducedMotion={reducedMotion} />
         <StatusReadout reducedMotion={reducedMotion} />
         <SkillsPanel reducedMotion={reducedMotion} />

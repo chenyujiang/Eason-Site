@@ -9,8 +9,25 @@
   cursor: pointer;
 }
 
-.node:focus {
+.node:focus:not(:focus-visible) {
   outline: none;
+}
+
+.node:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.orbitGroup {
+  transform-box: view-box;
+  animation: orbit 10s linear infinite;
+}
+
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .centerLabel {
