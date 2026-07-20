@@ -5,10 +5,8 @@ This file gives Claude Code context about the project.
 ## Project Overview
 
 - Project name: Eason Site
-- One-line description: Personal / studio website (portfolio, intro, contact) for Eason.
-- Tech stack: React + Vite + TypeScript
-
-> Note: the project is not yet scaffolded — there's no `package.json` or `src/` yet. The commands and structure below are the intended setup; run the scaffolding step first (`npm create vite@latest . -- --template react-ts`) before these commands will work.
+- One-line description: Eason Chen's personal site — a dark "mission control" themed single-pager (hero node-graph, skills, experience log, certifications, contact) built from his resume.
+- Tech stack: React 19 + Vite + TypeScript, Framer Motion, CSS Modules
 
 ## Common Commands
 
@@ -32,10 +30,15 @@ npm run lint
 ## Directory Structure
 
 ```
-src/            components, pages, and app logic
-src/components/ reusable UI components
-src/pages/      top-level page components
-public/         static assets served as-is
+src/components/  one folder per section (Hero, Skills, Experience, Certifications,
+                 Contact, Footer, StatusReadout, AgentFocus, Interests), each with
+                 a .tsx and a co-located .module.css
+src/data/        typed content (skills.ts, experience.ts, certifications.ts,
+                 agentFocus.ts) — resume facts live here, not in components
+src/hooks/       useReducedMotion (prefers-reduced-motion gate threaded as a prop
+                 through every animated component)
+src/styles/      tokens.css (design tokens as CSS custom properties) + global.css
+public/          static assets served as-is
 ```
 
 ## Code Style
@@ -47,11 +50,17 @@ public/         static assets served as-is
 ## Architecture Notes
 
 - Single-page site, client-rendered via Vite (no SSR/server framework).
-- Follow the `frontend-design` skill for visual/design decisions and the `vercel-react-best-practices` skill for React performance patterns — both are installed under `.claude/skills/`.
+- Design tokens (color, type scale, spacing, easing) live in `src/styles/tokens.css` as CSS custom properties — reference these instead of hardcoding values.
+- Motion is done via Framer Motion; every animated component takes a `reducedMotion: boolean` prop from `useReducedMotion` and must degrade to static/instant when true.
+- Installed skills (`.claude/skills/`), consult before making related changes:
+  - `frontend-design` — visual/design decisions
+  - `vercel-react-best-practices` — React performance patterns
+  - `react-patterns`, `react-testing`, `react-performance` — from affaan-m/ECC
+  - `web-design-guidelines` — Vercel Labs Web Interface Guidelines compliance checklist
 
 ## Testing Strategy
 
-- Not yet set up. When added, prefer Vitest + React Testing Library, with tests colocated next to components (`Component.test.tsx`).
+- Not yet set up (no test runner installed). When added, use Vitest + React Testing Library per the `react-testing` skill, with tests colocated next to components (`Component.test.tsx`).
 
 ## Notes / Restrictions
 
