@@ -123,6 +123,19 @@
   white-space: nowrap;
 }
 
+.table tbody th.withNote {
+  width: 42%;
+  white-space: normal;
+}
+
+.rowNote {
+  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
 .table td {
   color: var(--ink-soft);
 }

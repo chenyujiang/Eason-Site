@@ -1,6 +1,6 @@
 import { useId } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { diagramEdges, diagramNodes, stages, type DiagramNode } from '../../data/systemDesign'
+import { diagramEdges, diagramNodes, finalStage, stages, type DiagramNode } from '../../data/systemDesign'
 import styles from './ScaleDiagram.module.css'
 
 interface ScaleDiagramProps {
@@ -114,7 +114,7 @@ export function ScaleDiagram({ stage, reducedMotion }: ScaleDiagramProps) {
       </svg>
       <figcaption className={styles.caption}>
         <span className={styles.step}>
-          Step {stage} of {stages.length - 1}
+          Step {stage} of {finalStage}
         </span>
         {stage > 1 && added.length > 0 && (
           <span>

@@ -2,12 +2,14 @@ import { NotesLayout } from '../components/Notes/NotesLayout'
 import { ScaleDiagram } from '../components/ScaleDiagram/ScaleDiagram'
 import { hrefFor } from '../routes'
 import {
-  finalStage,
   stageFor,
   stages,
   systemDesignIntro,
 } from '../data/systemDesign'
 import styles from './SystemDesignPage.module.css'
+
+/** Sections after the numbered steps get a symbol in the step index. */
+const STEP_MARKS: Record<string, string> = { checklist: '✓', cloud: '☁︎' }
 
 interface SystemDesignPageProps {
   section: string | null
@@ -37,7 +39,7 @@ export default function SystemDesignPage({ section, reducedMotion }: SystemDesig
                     aria-current={s.id === activeId ? 'location' : undefined}
                     title={s.title}
                   >
-                    {i < finalStage ? i + 1 : '✓'}
+                    {STEP_MARKS[s.id] ?? i + 1}
                     <span className="visually-hidden">{s.title}</span>
                   </a>
                 </li>

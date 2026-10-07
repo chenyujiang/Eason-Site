@@ -56,9 +56,7 @@ function NoteBlock({ block }: { block: Block }) {
                 <tr key={row[0]}>
                   {row.map((cell, i) =>
                     i === 0 ? (
-                      <th key={i} scope="row">
-                        {cell}
-                      </th>
+                      <RowHeader key={i} cell={cell} />
                     ) : (
                       <td key={i}>{cell}</td>
                     ),
@@ -88,5 +86,16 @@ export function NoteBlocks({ blocks }: { blocks: Block[] }) {
         <NoteBlock key={i} block={block} />
       ))}
     </div>
+  )
+}
+
+/** A row header may carry a second, muted line after a newline. */
+function RowHeader({ cell }: { cell: string }) {
+  const [label, note] = cell.split('\n')
+  return (
+    <th scope="row" className={note ? styles.withNote : undefined}>
+      {label}
+      {note && <span className={styles.rowNote}>{note}</span>}
+    </th>
   )
 }

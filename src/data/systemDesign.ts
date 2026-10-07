@@ -475,13 +475,152 @@ export const stages: NoteSection[] = [
       },
     ],
   },
+  {
+    id: 'cloud',
+    title: 'On AWS and Azure',
+    blocks: [
+      {
+        kind: 'p',
+        text: 'Every building block above is vendor-neutral. On a cloud you rarely run them yourself: you rent a ==managed service== that does the job, and the provider handles patching, failover, and most of the scaling. Here is what each piece is called on the two biggest clouds, and when you actually need it.',
+      },
+      {
+        kind: 'table',
+        caption: 'The building blocks, mapped to AWS and Azure',
+        head: ['Building block — use it when…', 'AWS', 'Azure'],
+        rows: [
+          [
+            'DNS\nYou have a domain and need it to point at your servers',
+            'Route 53',
+            'Azure DNS',
+          ],
+          [
+            'GeoDNS / global routing\nUsers are spread across regions and should reach the nearest one, or fail over when one goes down',
+            'Route 53 latency, geolocation and failover routing',
+            'Traffic Manager, or Front Door for HTTP',
+          ],
+          [
+            'Web servers\nYou need somewhere to run the app (see “Choosing compute” below)',
+            'EC2, ECS / EKS, Lambda, Elastic Beanstalk',
+            'Virtual Machines, Container Apps / AKS, Functions, App Service',
+          ],
+          [
+            'Load balancer\nYou run more than one web server, or need zero-downtime deploys',
+            'Elastic Load Balancing: ALB (HTTP) or NLB (TCP/UDP)',
+            'Application Gateway (HTTP) or Azure Load Balancer (TCP/UDP)',
+          ],
+          [
+            'Relational database\nData has relationships, needs joins, or must be transactional (orders, payments, accounts)',
+            'RDS (PostgreSQL, MySQL, SQL Server…) or Aurora',
+            'Azure SQL Database, Azure Database for PostgreSQL / MySQL',
+          ],
+          [
+            'Read replicas\nReads far outnumber writes and the primary is getting busy',
+            'RDS / Aurora read replicas',
+            'Read replicas in Azure SQL and Azure Database for PostgreSQL / MySQL',
+          ],
+          [
+            'NoSQL database\nHuge scale with simple lookups by key, or a schema that keeps changing',
+            'DynamoDB',
+            'Cosmos DB',
+          ],
+          [
+            'Cache\nThe same data is read over and over, and the database is the bottleneck',
+            'ElastiCache (Valkey / Redis OSS / Memcached)',
+            'Azure Managed Redis',
+          ],
+          [
+            'Session store\nWeb servers must be stateless so any of them can serve any user',
+            'ElastiCache or DynamoDB',
+            'Azure Managed Redis or Cosmos DB',
+          ],
+          [
+            'Object storage\nYou store files: uploads, images, backups, built frontend assets',
+            'S3',
+            'Blob Storage',
+          ],
+          [
+            'CDN\nUsers are far from your servers, or you serve lots of static files',
+            'CloudFront',
+            'Front Door',
+          ],
+          [
+            'Autoscaling\nTraffic rises and falls and you don’t want to pay for the peak all day',
+            'EC2 Auto Scaling groups (built into Lambda and Fargate)',
+            'Virtual Machine Scale Sets (built into Functions, Container Apps, App Service)',
+          ],
+          [
+            'Multiple data centers\nA whole region going down must not take you offline',
+            'Multiple Regions + Route 53 failover; Aurora Global Database, DynamoDB global tables',
+            'Multiple regions + Front Door / Traffic Manager; Cosmos DB multi-region, SQL geo-replication',
+          ],
+          [
+            'Message queue\nSlow work (emails, image processing, reports) shouldn’t make the user wait',
+            'SQS',
+            'Queue Storage, or Service Bus for richer features',
+          ],
+          [
+            'Workers\nSomething needs to pick jobs off the queue and process them',
+            'Lambda, or ECS tasks for long jobs',
+            'Functions, or Container Apps jobs',
+          ],
+          [
+            'Logging, metrics, alerts\nYou need to know something is wrong before your users tell you',
+            'CloudWatch, with X-Ray for tracing',
+            'Azure Monitor: Log Analytics, Application Insights',
+          ],
+          [
+            'CI/CD\nEvery merge should be built, tested, and deployed automatically',
+            'CodePipeline + CodeBuild (or GitHub Actions)',
+            'Azure Pipelines (or GitHub Actions)',
+          ],
+          [
+            'Sharding\nOne database can no longer hold the data or keep up with writes',
+            'DynamoDB partitions automatically; Aurora Limitless Database for SQL',
+            'Cosmos DB partitions by a key you choose; elastic clusters in Azure Database for PostgreSQL',
+          ],
+        ],
+      },
+      { kind: 'h3', text: 'Choosing between similar services' },
+      {
+        kind: 'defs',
+        items: [
+          {
+            term: 'Choosing compute',
+            text: '==Functions== (Lambda, Azure Functions) for short, spiky, event-driven work — you pay per run and never think about servers. ==Managed app platforms== (App Service, Elastic Beanstalk) for an ordinary web app you just want hosted. ==Containers== (ECS on Fargate, Container Apps; EKS / AKS when you need full Kubernetes) when the app is already in Docker or is several services. ==Virtual machines== only when you need full control of the OS.',
+          },
+          {
+            term: 'Queue, topic, or stream?',
+            text: 'A ==queue== (SQS, Service Bus queues) hands each job to exactly one worker. A ==topic== (SNS, Service Bus topics, Event Grid) sends one event to many listeners — “order placed” goes to billing, email, and analytics at once. A ==stream== (Kinesis, Event Hubs) is for huge volumes like clicks or telemetry that consumers read in order and can replay.',
+          },
+          {
+            term: 'HTTP or network load balancer?',
+            text: 'An HTTP (layer 7) balancer — ALB, Application Gateway — understands URLs, so it can send /api and /images to different servers, terminate TLS, and sit behind a web application firewall. A network (layer 4) balancer — NLB, Azure Load Balancer — just forwards connections: faster and works for any TCP/UDP traffic, but blind to what’s inside.',
+          },
+          {
+            term: 'SQL or NoSQL?',
+            text: 'Default to relational (RDS / Aurora, Azure SQL / PostgreSQL). Move a workload to DynamoDB or Cosmos DB when you know its access patterns up front and need near-unlimited scale with fast key lookups — not just because it sounds more scalable.',
+          },
+          {
+            term: 'Global entry point',
+            text: 'Front Door is a CDN, global load balancer, and web application firewall in one. On AWS the same job is usually CloudFront plus Route 53, with Global Accelerator for non-HTTP traffic.',
+          },
+        ],
+      },
+      {
+        kind: 'callout',
+        label: 'Rule of thumb',
+        text: 'Don’t build the final diagram on day one. A small product runs fine on one managed app service, one managed database, and object storage behind a CDN. Add each piece above ==only when a real bottleneck shows up==.',
+      },
+    ],
+  },
 ]
 
-/** The diagram stage shown for a given section (the checklist shows the final design). */
+/** The diagram's last step; sections after it (checklist, cloud mapping) show the final design. */
+export const finalStage = 11
+
+/** The diagram stage shown for a given section. */
 export function stageFor(sectionId: string): number {
   const index = stages.findIndex((s) => s.id === sectionId)
   if (index === -1) return 1
-  return Math.min(index + 1, stages.length - 1)
+  return Math.min(index + 1, finalStage)
 }
-
-export const finalStage = stages.length - 1
