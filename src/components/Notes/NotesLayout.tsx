@@ -1,5 +1,5 @@
 import { useMemo, type ReactNode } from 'react'
-import type { NoteSection, NoteSource } from '../../data/notes'
+import type { NoteSection } from '../../data/notes'
 import { hrefFor, type RoutePath } from '../../routes'
 import { useActiveSection } from '../../hooks/useActiveSection'
 import { useScrollToSection } from '../../hooks/useScrollToSection'
@@ -12,7 +12,6 @@ interface NotesLayoutProps {
   eyebrow: string
   title: string
   intro: string
-  source: NoteSource
   sections: NoteSection[]
   section: string | null
   reducedMotion: boolean
@@ -29,7 +28,6 @@ export function NotesLayout({
   eyebrow,
   title,
   intro,
-  source,
   sections,
   section,
   reducedMotion,
@@ -63,12 +61,6 @@ export function NotesLayout({
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.intro}>
           <Marked text={intro} />
-        </p>
-        <p className={styles.source}>
-          Source:{' '}
-          {source.href ? <a href={source.href}>{source.title}</a> : <cite>{source.title}</cite>}
-          {' — '}
-          {source.detail}
         </p>
       </header>
 

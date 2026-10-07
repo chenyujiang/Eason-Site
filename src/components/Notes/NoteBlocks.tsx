@@ -78,25 +78,6 @@ function NoteBlock({ block }: { block: Block }) {
           </p>
         </aside>
       )
-    case 'timeline': {
-      return (
-        <figure className={styles.timeline}>
-          <ol className={styles.timelineBar}>
-            {block.segments.map((segment) => (
-              <li
-                key={segment.label}
-                className={segment.emphasis ? styles.emphasis : undefined}
-                style={{ flexGrow: segment.minutes }}
-              >
-                <span className={styles.minutes}>{segment.minutes} min</span>
-                <span className={styles.segmentLabel}>{segment.label}</span>
-              </li>
-            ))}
-          </ol>
-          <figcaption>{block.caption}</figcaption>
-        </figure>
-      )
-    }
   }
 }
 

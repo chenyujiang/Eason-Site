@@ -3,8 +3,9 @@
 Eason Chen's personal site, styled as a light "annotated drafting sheet". It has three pages:
 
 - **Profile** (`#/`): built from his resume. Hero, the three platforms he built from the ground up, experience, skills, certifications and education, and contact details.
-- **System Design** (`#/system-design`): notes on *System Design Interview* (Alex Xu), Chapter 1, "Scale from Zero to Millions of Users". A sticky architecture diagram adds components as you scroll through each step.
-- **Frontend System Design** (`#/frontend-system-design`): notes on the System Design Handbook's frontend guide.
+- **System Design** (`#/system-design`): scaling a system from one server to millions of users. A sticky architecture diagram adds components as you scroll through each step.
+- **Frontend System Design** (`#/frontend-system-design`): why frontend architecture matters and its core principles: rendering, state, data, performance, scale, reliability.
+- **AI Workflow** (`#/ai-workflow`): the idea-to-shipped-code loop I use with coding agents, in plain language.
 
 ## Stack
 

@@ -1,0 +1,110 @@
+/* Desktop rail: the steps as a pipeline, each passing its output down */
+.pipeline {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  counter-reset: stage;
+}
+
+.pipeline li + li {
+  position: relative;
+  padding-top: var(--space-4);
+}
+
+/* Connector arrow between stages */
+.pipeline li + li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 1.25rem;
+  height: var(--space-4);
+  border-left: 1.5px solid var(--rule-strong);
+}
+
+.pipeline li + li::after {
+  content: '';
+  position: absolute;
+  top: calc(var(--space-4) - 6px);
+  left: calc(1.25rem - 4px);
+  border: 4.5px solid transparent;
+  border-top-color: var(--rule-strong);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--sheet);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--ink-soft);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.stage:hover {
+  border-color: var(--ink);
+}
+
+.stage[aria-current='location'] {
+  border-color: var(--ink);
+  background: var(--marker-tint);
+  box-shadow: inset 4px 0 0 var(--marker);
+}
+
+.stageTitle {
+  font-size: var(--step-small);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.stageTitle::before {
+  counter-increment: stage;
+  content: counter(stage, decimal-leading-zero);
+  margin-right: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--step-caption);
+  font-weight: 400;
+  color: var(--cobalt);
+}
+
+.stageOutput {
+  font-family: var(--font-mono);
+  font-size: var(--step-caption);
+}
+
+.stageOutput::before {
+  content: '→ ';
+  color: var(--cobalt);
+}
+
+.loop {
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--step-caption);
+  color: var(--cobalt);
+}
+
+/* Under each step heading: what this step passes on */
+.handoff {
+  align-self: flex-start;
+  padding: 0.3rem 0.6rem;
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--radius-sm);
+  background: var(--sheet);
+  font-family: var(--font-mono);
+  font-size: var(--step-caption);
+  color: var(--ink);
+}
+
+.handoffLabel {
+  color: var(--cobalt);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.handoffLabel::after {
+  content: ' →';
+}

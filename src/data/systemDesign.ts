@@ -1,9 +1,4 @@
-import type { NoteSection, NoteSource } from './notes'
-
-export const systemDesignSource: NoteSource = {
-  title: 'System Design Interview — An Insider’s Guide',
-  detail: 'Alex Xu, Chapter 1: Scale from Zero to Millions of Users. Notes in my own words.',
-}
+import type { NoteSection } from './notes'
 
 export const systemDesignIntro =
   'Start with one server and keep scaling it up until it serves millions of users. Each step fixes the ==bottleneck the previous design created==, and the diagram adds the new parts as you read.'
@@ -83,7 +78,7 @@ export const diagramEdges: DiagramEdge[] = [
 ]
 
 /* ------------------------------------------------------------------ */
-/* Stages — one note section each, in the order the chapter builds up  */
+/* Stages — one note section each, in the order the architecture builds up  */
 /* ------------------------------------------------------------------ */
 
 export const stages: NoteSection[] = [
@@ -194,7 +189,7 @@ export const stages: NoteSection[] = [
     blocks: [
       {
         kind: 'p',
-        text: 'One ==primary== database takes every write (insert, update, delete). ==Replicas== copy its data and serve reads. Most apps read far more than they write, so you usually run several replicas. (The book uses the older master/slave terms.)',
+        text: 'One ==primary== database takes every write (insert, update, delete). ==Replicas== copy its data and serve reads. Most apps read far more than they write, so you usually run several replicas.',
       },
       {
         kind: 'defs',
@@ -341,7 +336,7 @@ export const stages: NoteSection[] = [
       },
       {
         kind: 'p',
-        text: 'With state out of the web tier, ==autoscaling== — adding or removing servers based on load — becomes straightforward. The book picks NoSQL for the session store because it is easy to scale.',
+        text: 'With state out of the web tier, ==autoscaling== — adding or removing servers based on load — becomes straightforward. A NoSQL store is a common pick for sessions because it is easy to scale.',
       },
     ],
   },
@@ -424,7 +419,7 @@ export const stages: NoteSection[] = [
     blocks: [
       {
         kind: 'p',
-        text: 'Scaling the database up only goes so far. Big machines exist (the book cites 24 TB of RAM on RDS, and Stack Overflow ran on one primary in 2013), but hardware has limits, one server is a single point of failure, and powerful servers are expensive.',
+        text: 'Scaling the database up only goes so far. Big machines exist (Amazon RDS offers instances with 24 TB of RAM, and Stack Overflow ran on one primary in 2013), but hardware has limits, one server is a single point of failure, and powerful servers are expensive.',
       },
       {
         kind: 'p',
@@ -439,7 +434,7 @@ export const stages: NoteSection[] = [
         items: [
           {
             term: 'Resharding',
-            text: 'A shard fills up from growth or uneven distribution, so the hash function changes and data moves. Consistent hashing (Chapter 5) eases this.',
+            text: 'A shard fills up from growth or uneven distribution, so the hash function changes and data moves. Consistent hashing eases this.',
           },
           {
             term: 'Celebrity problem',

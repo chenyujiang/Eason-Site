@@ -1,0 +1,13 @@
+/*
+ * Leave room for the fixed side rail. Only the containers move (full-bleed
+ * bands like Contact stay full width), and only by as much as the centred
+ * container's own margin doesn't already provide.
+ */
+@media (min-width: 1100px) {
+  .page :global(.container) {
+    padding-left: max(
+      var(--space-4),
+      calc(13rem - max(0px, (100vw - var(--max-width)) / 2))
+    );
+  }
+}

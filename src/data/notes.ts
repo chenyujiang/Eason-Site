@@ -9,16 +9,9 @@ export type Block =
   | { kind: 'defs'; items: { term: string; text: string }[] }
   | { kind: 'table'; caption: string; head: string[]; rows: string[][] }
   | { kind: 'callout'; label: string; text: string }
-  | { kind: 'timeline'; caption: string; segments: { label: string; minutes: number; emphasis?: boolean }[] }
 
 export interface NoteSection {
   id: string
   title: string
   blocks: Block[]
-}
-
-export interface NoteSource {
-  title: string
-  detail: string
-  href?: string
 }

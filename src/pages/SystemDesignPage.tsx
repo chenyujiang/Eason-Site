@@ -6,7 +6,6 @@ import {
   stageFor,
   stages,
   systemDesignIntro,
-  systemDesignSource,
 } from '../data/systemDesign'
 import styles from './SystemDesignPage.module.css'
 
@@ -19,10 +18,9 @@ export default function SystemDesignPage({ section, reducedMotion }: SystemDesig
   return (
     <NotesLayout
       path="/system-design"
-      eyebrow="System design · Notebook"
+      eyebrow="System design"
       title="Scale from zero to millions of users"
       intro={systemDesignIntro}
-      source={systemDesignSource}
       sections={stages}
       section={section}
       reducedMotion={reducedMotion}

@@ -1,9 +1,5 @@
 import { NotesLayout } from '../components/Notes/NotesLayout'
-import {
-  frontendDesignIntro,
-  frontendDesignSource,
-  frontendSections,
-} from '../data/frontendDesign'
+import { frontendDesignIntro, frontendSections } from '../data/frontendDesign'
 
 interface FrontendDesignPageProps {
   section: string | null
@@ -14,10 +10,9 @@ export default function FrontendDesignPage({ section, reducedMotion }: FrontendD
   return (
     <NotesLayout
       path="/frontend-system-design"
-      eyebrow="Frontend system design · Notebook"
+      eyebrow="Frontend architecture"
       title="Frontend system design"
       intro={frontendDesignIntro}
-      source={frontendDesignSource}
       sections={frontendSections}
       section={section}
       reducedMotion={reducedMotion}

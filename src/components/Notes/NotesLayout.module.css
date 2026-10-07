@@ -22,19 +22,6 @@
   max-width: 58ch;
 }
 
-.source {
-  padding-top: var(--space-3);
-  border-top: 1.5px solid var(--ink);
-  font-family: var(--font-mono);
-  font-size: var(--step-caption);
-  color: var(--ink-soft);
-}
-
-.source cite {
-  font-style: italic;
-  color: var(--ink);
-}
-
 .body {
   display: grid;
   gap: var(--space-5);

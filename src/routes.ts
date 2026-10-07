@@ -2,6 +2,7 @@ export const routes = [
   { path: '/', label: 'Profile', short: 'Profile' },
   { path: '/system-design', label: 'System Design', short: 'System' },
   { path: '/frontend-system-design', label: 'Frontend System Design', short: 'Frontend' },
+  { path: '/ai-workflow', label: 'AI Workflow', short: 'AI' },
 ] as const
 
 export type RoutePath = (typeof routes)[number]['path']

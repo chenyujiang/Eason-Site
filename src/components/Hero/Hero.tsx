@@ -18,7 +18,7 @@ export function Hero({ reducedMotion }: HeroProps) {
         }
 
   return (
-    <section className={styles.hero} data-animate={!reducedMotion || undefined}>
+    <section id="about" className={styles.hero} data-animate={!reducedMotion || undefined}>
       <div className="container">
         <motion.p className="eyebrow" {...rise(0)}>
           {profile.role} · {profile.discipline}

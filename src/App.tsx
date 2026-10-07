@@ -7,11 +7,13 @@ import { HomePage } from './pages/HomePage'
 
 const SystemDesignPage = lazy(() => import('./pages/SystemDesignPage'))
 const FrontendDesignPage = lazy(() => import('./pages/FrontendDesignPage'))
+const AiWorkflowPage = lazy(() => import('./pages/AiWorkflowPage'))
 
 const TITLES = {
   '/': 'Eason Chen — Senior Frontend Developer',
   '/system-design': 'System Design: Scale from Zero to Millions — Eason Chen',
   '/frontend-system-design': 'Frontend System Design — Eason Chen',
+  '/ai-workflow': 'AI Workflow — Eason Chen',
 } as const
 
 function App() {
@@ -43,6 +45,9 @@ function App() {
           )}
           {path === '/frontend-system-design' && (
             <FrontendDesignPage section={section} reducedMotion={reducedMotion} />
+          )}
+          {path === '/ai-workflow' && (
+            <AiWorkflowPage section={section} reducedMotion={reducedMotion} />
           )}
         </Suspense>
       </main>

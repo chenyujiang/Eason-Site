@@ -1,116 +1,69 @@
-import type { NoteSection, NoteSource } from './notes'
-
-export const frontendDesignSource: NoteSource = {
-  title: 'Frontend System Design — System Design Handbook',
-  detail: 'systemdesignhandbook.com. Notes in my own words.',
-  href: 'https://www.systemdesignhandbook.com/guides/frontend-system-design/',
-}
+import type { NoteSection } from './notes'
 
 export const frontendDesignIntro =
-  'Architecting a frontend means reasoning about rendering, state ownership, data flow, performance, and failure with the same rigour as a backend. Interviewers care less about which framework you name and more about ==why a choice fits the constraints==.'
+  'Architecting a frontend means reasoning about rendering, state ownership, data flow, performance, and failure with the same rigour as a backend. The framework matters less than ==why a choice fits the constraints==.'
 
 export const frontendSections: NoteSection[] = [
   {
-    id: 'what-it-is',
-    title: 'What frontend system design covers',
+    id: 'why-it-matters',
+    title: 'Why it matters',
     blocks: [
       {
         kind: 'p',
-        text: 'Three lenses run through every question: ==user experience==, ==technical architecture==, and ==team scalability==.',
+        text: 'The frontend is where users actually meet the system. A fast, reliable backend still feels slow and broken behind a frontend that blocks on JavaScript, loses state, or falls over when one request fails.',
+      },
+      {
+        kind: 'p',
+        text: 'Three lenses run through every decision: ==user experience==, ==technical architecture==, and ==team scalability==. Get one wrong and the other two pay for it.',
       },
       {
         kind: 'table',
         caption: 'Where the boundaries sit',
-        head: ['Discipline', 'Focus', 'Interview depth'],
+        head: ['Discipline', 'Focus'],
         rows: [
-          ['Frontend system design', 'Architecture, performance, state, data flow', 'Deep'],
-          ['UI / UX design', 'Visual hierarchy, interaction patterns', 'Light'],
-          ['Backend system design', 'Storage, services, infrastructure', 'Only at the API boundary'],
+          ['Frontend system design', 'Architecture, performance, state, data flow'],
+          ['UI / UX design', 'Visual hierarchy, interaction patterns'],
+          ['Backend system design', 'Storage, services, infrastructure — met at the API boundary'],
         ],
-      },
-      {
-        kind: 'callout',
-        label: 'Common mistake',
-        text: 'Over-designing backend pieces you should treat as a black box, while under-investing in the frontend concerns the interviewer actually wants to probe.',
       },
     ],
   },
   {
-    id: 'evaluation',
-    title: 'What interviewers look for',
+    id: 'principles',
+    title: 'Core principles',
     blocks: [
       {
         kind: 'defs',
         items: [
-          { term: 'Decomposition', text: 'Breaking an ambiguous prompt into a structured solution.' },
           {
-            term: 'Requirements first',
-            text: 'Clarifying users, scale, and success criteria before proposing anything.',
+            term: 'Requirements drive architecture',
+            text: 'Functional requirements say what the system does; non-functional ones — loads in under 2 s on 4G, works with a screen reader, stays usable when an API fails — ==shape the architecture more than the feature list does==.',
           },
           {
-            term: 'Ownership thinking',
-            text: 'Framing the problem space instead of diving straight into implementation.',
+            term: 'Separate server and client state',
+            text: 'Data owned by the backend is a cache to keep in sync, not app state.',
           },
           {
-            term: 'Reasoned trade-offs',
-            text: 'Justifying choices about state, fetching, and performance — not reciting framework features.',
-          },
-        ],
-      },
-      {
-        kind: 'callout',
-        label: 'The sentence to practise',
-        text: '“I chose ==X because of this constraint==, but if Y were true I would consider Z instead.”',
-      },
-    ],
-  },
-  {
-    id: 'framework',
-    title: 'A framework for the 45 minutes',
-    blocks: [
-      {
-        kind: 'timeline',
-        caption: 'Suggested split of a 45-minute interview — what’s left over is buffer',
-        segments: [
-          { label: 'Clarify requirements', minutes: 5 },
-          { label: 'High-level architecture', minutes: 5 },
-          { label: 'Deep dives on 2–3 areas', minutes: 20, emphasis: true },
-          { label: 'Trade-offs & questions', minutes: 10 },
-        ],
-      },
-      { kind: 'h3', text: '1 · Clarify' },
-      {
-        kind: 'list',
-        items: [
-          'Who are the users — consumers on mobile, or enterprise users on desktop?',
-          'What scale — thousands or millions of concurrent users?',
-          'Which constraints matter — SEO? An authenticated dashboard?',
-          'Greenfield, or evolving an existing architecture?',
-        ],
-      },
-      { kind: 'h3', text: '2 · Write the requirements down' },
-      {
-        kind: 'defs',
-        items: [
-          {
-            term: 'Functional',
-            text: 'What the system does — browse products, add to cart, check out.',
+            term: 'Render where it makes sense',
+            text: 'Pick client, server, or static rendering per surface, based on SEO, freshness, and interactivity.',
           },
           {
-            term: 'Non-functional',
-            text: 'How it behaves — loads in under 2 s on 4G, core flows work with a screen reader, stays usable when an API fails. ==These drive the architecture more than the feature list does.==',
+            term: 'Design for failure',
+            text: 'Slow networks, partial responses, and failed requests are normal. Core flows should survive them.',
+          },
+          {
+            term: 'Measure performance',
+            text: 'Set budgets against Core Web Vitals and watch real users, not just lab runs.',
+          },
+          {
+            term: 'Build for the next engineer',
+            text: 'Clear module boundaries and consistent patterns let many teams change the codebase safely.',
+          },
+          {
+            term: 'Explicit trade-offs',
+            text: '“I chose ==X because of this constraint==; if Y were true I would choose Z.” Every choice gives something up — name it.',
           },
         ],
-      },
-      { kind: 'h3', text: '3 · Spend depth where it pays' },
-      {
-        kind: 'p',
-        text: 'Go deep on rendering strategy, state management, and data fetching. Leave styling, minor UI, and tooling alone unless asked — let the interviewer’s curiosity, not your comfort zone, set the depth.',
-      },
-      { kind: 'h3', text: '4 · Think out loud' },
-      {
-        kind: 'p',
-        text: 'Signpost (“I’m weighing server-side rendering here…”), justify every decision, and say what you’re giving up. Why you chose matters more than what you chose.',
       },
     ],
   },
@@ -246,7 +199,7 @@ export const frontendSections: NoteSection[] = [
       { kind: 'h3', text: 'Granularity' },
       {
         kind: 'p',
-        text: 'Route-level fetching blocks render until data arrives but guarantees completeness. Component-level fetching renders incrementally but risks ==waterfalls== where children wait on parents — parallelise and prefetch. In an interview, sketch the request timeline.',
+        text: 'Route-level fetching blocks render until data arrives but guarantees completeness. Component-level fetching renders incrementally but risks ==waterfalls== where children wait on parents — parallelise and prefetch. Sketching the request timeline makes them obvious.',
       },
       { kind: 'h3', text: 'Cache invalidation' },
       {
@@ -312,7 +265,7 @@ export const frontendSections: NoteSection[] = [
       {
         kind: 'callout',
         label: 'Update',
-        text: 'The guide lists First Input Delay (target < 100 ms). Google replaced FID with INP as a Core Web Vital in March 2024.',
+        text: 'INP replaced First Input Delay (FID) as a Core Web Vital in March 2024.',
       },
       {
         kind: 'list',
@@ -439,8 +392,8 @@ export const frontendSections: NoteSection[] = [
       },
       {
         kind: 'callout',
-        label: 'In the interview',
-        text: 'Never call a design “secure”. Name the specific threats, the mitigations, and the risk that remains.',
+        label: 'Principle',
+        text: 'Never call a design simply “secure”. Name the specific threats, the mitigations, and the risk that remains.',
       },
       { kind: 'h3', text: 'Accessibility' },
       {
@@ -451,85 +404,6 @@ export const frontendSections: NoteSection[] = [
       {
         kind: 'p',
         text: 'GDPR and CCPA mean consent-aware initialisation: analytics and ad scripts can’t load until the user agrees, which changes when scripts run and how performance is measured. Minimise data, avoid storing sensitive data client-side, and support users’ rights to access and delete.',
-      },
-    ],
-  },
-  {
-    id: 'worked-example',
-    title: 'Worked example: collaborative editor',
-    blocks: [
-      {
-        kind: 'p',
-        text: 'Restate the brief: multiple people edit one document at once, and changes appear within seconds. Then sketch four layers — ==shell== (routing, auth), ==components== (editor, toolbars), ==state== (document and selection), ==data== (server sync and real-time updates).',
-      },
-      {
-        kind: 'list',
-        items: [
-          'Local state applies edits optimistically; the server holds the authoritative version and every client converges on it via operational transformation or CRDTs.',
-          'Virtualise the document so only the visible part is in the DOM.',
-          'Debounce local updates during fast typing; save in the background.',
-        ],
-      },
-      {
-        kind: 'table',
-        caption: 'Decisions and alternatives',
-        head: ['Area', 'Chosen', 'Alternative', 'Why'],
-        rows: [
-          ['Rendering', 'SSR for lists, CSR for editor', 'Full CSR', 'Shared docs need SEO'],
-          ['Sync', 'WebSocket + OT', 'Polling + conflict check', 'Collaboration quality'],
-          ['State', 'Optimistic local + reconcile', 'Server-only', 'Typing must feel instant'],
-          ['Document', 'Virtualised viewport', 'Full DOM', 'Large documents'],
-        ],
-      },
-      {
-        kind: 'p',
-        text: 'If collaboration were only occasional, polling with conflict detection on save would be simpler and good enough — saying so is the point.',
-      },
-    ],
-  },
-  {
-    id: 'practice',
-    title: 'Practising',
-    blocks: [
-      {
-        kind: 'p',
-        text: 'Set a 45-minute timer and design end to end. Record yourself explaining — weak reasoning is obvious on playback. Rough boxes and arrows drawn fast beat a beautiful diagram that eats your time.',
-      },
-      { kind: 'h3', text: 'Mistakes that show gaps' },
-      {
-        kind: 'list',
-        items: [
-          'Jumping to frameworks before clarifying requirements.',
-          'Trade-offs that stop at surface-level pros and cons.',
-          'Fifteen minutes on state libraries, nothing on rendering.',
-          'Calling the design “secure” without naming threats.',
-        ],
-      },
-      { kind: 'h3', text: 'Practice prompts' },
-      {
-        kind: 'defs',
-        items: [
-          {
-            term: 'News feed',
-            text: 'Real-time posts, optimistic likes, infinite scroll — fetching, virtualisation, sync.',
-          },
-          {
-            term: 'Product catalogue',
-            text: 'Faceted search, SEO product pages, persistent cart — hybrid rendering, client storage.',
-          },
-          {
-            term: 'Real-time dashboard',
-            text: 'Many sources, configurable widgets, alerts — WebSockets, composition, update performance.',
-          },
-          {
-            term: 'Form builder',
-            text: 'Drag and drop, conditional logic — complex state, dynamic data modelling.',
-          },
-          {
-            term: 'Video player',
-            text: 'Quality switching, chapters, captions — media performance, accessible controls.',
-          },
-        ],
       },
     ],
   },
