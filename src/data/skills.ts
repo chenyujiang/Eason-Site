@@ -1,71 +1,87 @@
-export interface SkillCategory {
+export interface SkillGroup {
   id: string
   label: string
   skills: string[]
+  /** Skills worth calling out with a highlighter mark. */
+  core?: string[]
 }
 
-export const skillCategories: SkillCategory[] = [
-  {
-    id: 'microsoft-data',
-    label: 'Microsoft & Data',
-    skills: [
-      'Dynamics 365 Business Central (AL)',
-      'Power BI (Semantic Models, DAX, Power Query)',
-      'Power Automate',
-      'Power Apps',
-      'Power Pages',
-    ],
-  },
-  {
-    id: 'ai-automation',
-    label: 'AI & Automation',
-    skills: [
-      'Claude (skills, hooks, slash commands, agent teams, MCP)',
-      'Multi-agent workflow design',
-      'LLM-based automation',
-      'Prompt engineering',
-      'AI Fluency: Framework & Foundations',
-    ],
-  },
+export const skillGroups: SkillGroup[] = [
   {
     id: 'frontend',
     label: 'Frontend',
+    core: ['React.js', 'Next.js', 'TypeScript'],
     skills: [
-      'JavaScript / TypeScript',
       'React.js',
+      'Next.js',
+      'TypeScript',
+      'JavaScript (ES6+)',
       'Vue.js',
       'AngularJS',
-      'DNN (DotNetNuke)',
-      'HTML / CSS',
+      'HTML5',
+      'CSS3',
+      'SCSS',
+      'LESS',
+      'Tailwind CSS',
+      'Bootstrap',
+      'jQuery',
       'Responsive UI',
     ],
   },
   {
-    id: 'backend-integration',
-    label: 'Backend & Integration',
+    id: 'ai',
+    label: 'AI-Augmented Engineering',
+    core: ['Claude Code'],
     skills: [
-      'PHP',
-      'MySQL',
-      'Node.js',
-      'REST APIs',
-      'Third-party API integration',
-      'Multi-tenant system design',
+      'Claude Code',
+      'Multi-agent workflow design',
+      'Custom skills, hooks & slash commands',
+      'MCP server integrations',
+      'Prompt engineering',
+      'AI-assisted upskilling',
     ],
   },
   {
-    id: 'data-analytics',
-    label: 'Data & Analytics',
+    id: 'backend',
+    label: 'Backend & Data',
+    skills: ['Python', 'PHP', 'MySQL', 'MVC architecture', 'REST & third-party API integration'],
+  },
+  {
+    id: 'platforms',
+    label: 'Platforms & E-commerce',
     skills: [
-      'SQL',
-      'Python (Pandas)',
-      'Dimensional modelling',
-      'ETL/ELT',
-      'Data quality & governance',
+      'DNN (DotNetNuke)',
+      'Magento 1 & 2',
+      'WordPress / WooCommerce',
+      'OpenCart',
+      'nopCommerce',
+      'Shopify (Liquid)',
+      'React Native / Expo',
     ],
   },
   {
-    id: 'tools-devops',
-    label: 'Tools & DevOps',
-    skills: ['Azure DevOps', 'Git', 'Jira', 'Agile / Scrum'],
+    id: 'enterprise',
+    label: 'Enterprise & Reporting',
+    skills: [
+      'Dynamics 365 Business Central (AL)',
+      'Power Automate',
+      'Power Apps',
+      'Power Pages',
+      'Power BI',
+    ],
+  },
+  {
+    id: 'practice',
+    label: 'Leadership & Practice',
+    skills: [
+      'Frontend architecture & standards',
+      'Mentoring & code review',
+      'Stakeholder / PM communication',
+      'Git',
+      'Azure DevOps',
+      'Vite',
+      'webpack',
+      'CI/CD & automated deployment',
+    ],
   },
 ]

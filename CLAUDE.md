@@ -5,7 +5,7 @@ This file gives Claude Code context about the project.
 ## Project Overview
 
 - Project name: Eason Site
-- One-line description: Eason Chen's personal site — a dark "mission control" themed single-pager (hero node-graph, skills, experience log, certifications, contact) built from his resume.
+- One-line description: Eason Chen's personal site — a light "annotated drafting sheet" theme (grid paper, navy ink, cobalt accent, yellow highlighter marks). A profile page built from his resume plus study-notes pages (System Design, Frontend System Design).
 - Tech stack: React 19 + Vite + TypeScript, Framer Motion, CSS Modules
 
 ## Common Commands
@@ -30,13 +30,17 @@ npm run lint
 ## Directory Structure
 
 ```
-src/components/  one folder per section (Hero, Skills, Experience, Certifications,
-                 Contact, Footer, StatusReadout, AgentFocus, Interests), each with
-                 a .tsx and a co-located .module.css
-src/data/        typed content (skills.ts, experience.ts, certifications.ts,
-                 agentFocus.ts) — resume facts live here, not in components
-src/hooks/       useReducedMotion (prefers-reduced-motion gate threaded as a prop
-                 through every animated component)
+src/pages/       one file per route: HomePage (profile), SystemDesignPage and
+                 FrontendDesignPage (lazy-loaded study notes)
+src/components/  one folder per component, each with a .tsx and a co-located
+                 .module.css. Notes/ holds the shared notes layout + block renderer;
+                 ScaleDiagram/ is the step-by-step architecture SVG
+src/data/        typed content — resume facts (profile, platforms, experience,
+                 skills, credentials) and notes content (systemDesign,
+                 frontendDesign, using the Block model in notes.ts). Content lives
+                 here, not in components
+src/hooks/       useReducedMotion, useHashRoute, useActiveSection, useScrollToSection
+src/routes.ts    route table + hrefFor() link builder
 src/styles/      tokens.css (design tokens as CSS custom properties) + global.css
 public/          static assets served as-is
 ```
@@ -49,7 +53,10 @@ public/          static assets served as-is
 
 ## Architecture Notes
 
-- Single-page site, client-rendered via Vite (no SSR/server framework).
+- Client-rendered via Vite (no SSR/server framework).
+- Routing is a tiny hash router (`useHashRoute`), not a library: `#/`, `#/system-design`, `#/frontend-system-design`, with deep links to sections as `#/<page>/<section-id>`. Hashes that don't start with `#/` (e.g. the skip link) leave the route alone. Hash routing means no server rewrite rules are needed. Add a page by adding it to `routes.ts`, `TITLES` in `App.tsx`, and a lazy import.
+- Notes text supports `==phrase==` for a highlighter mark (rendered by `Marked`). Notes content must be paraphrased, never copied verbatim from the source book/site.
+- Fonts are self-hosted via @fontsource: Bricolage Grotesque (display), IBM Plex Sans (body), IBM Plex Mono (labels/data).
 - Design tokens (color, type scale, spacing, easing) live in `src/styles/tokens.css` as CSS custom properties — reference these instead of hardcoding values.
 - Motion is done via Framer Motion; every animated component takes a `reducedMotion: boolean` prop from `useReducedMotion` and must degrade to static/instant when true.
 - Installed skills (`.claude/skills/`), consult before making related changes:

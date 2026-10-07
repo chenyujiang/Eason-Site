@@ -1,88 +1,100 @@
 .hero {
-  position: relative;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse 60% 50% at 70% 30%, rgba(79, 209, 197, 0.08), transparent),
-    var(--bg);
+  padding-block: var(--space-6) var(--space-7);
 }
 
-.inner {
+.name {
+  margin-top: var(--space-3);
+  font-size: var(--step-h1);
+  font-weight: 750;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+/* Surname set lighter, like a drafting title block's second line */
+.surname {
+  font-weight: 300;
+  color: var(--cobalt);
+}
+
+.body {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-  align-items: center;
-  padding-block: var(--space-7);
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1.5px solid var(--ink);
 }
 
 @media (min-width: 900px) {
-  .inner {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  .body {
+    grid-template-columns: minmax(0, 1fr) 19rem;
+    gap: var(--space-6);
   }
 }
 
-.copy {
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 62ch;
+  color: var(--ink-soft);
+}
+
+.lead {
+  font-size: var(--step-lead);
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* Margin notes — set like annotations in a technical drawing */
+.notes {
+  align-self: start;
+  padding: var(--space-4);
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sheet);
+}
+
+.notes dl {
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
 
-.name {
-  font-size: var(--step-h1);
-  line-height: 1.02;
-}
-
-.title {
-  font-size: var(--step-lead);
-  color: var(--text-muted);
-  max-width: 34ch;
-}
-
-.location {
+.notes dt {
   font-family: var(--font-mono);
   font-size: var(--step-caption);
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
-.graph {
-  display: flex;
-  justify-content: center;
+.notes dd {
+  margin: 0;
+  font-size: var(--step-small);
+  overflow-wrap: anywhere;
 }
 
-.scrollCue {
-  position: absolute;
-  bottom: var(--space-5);
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 48px;
-  background: var(--hairline);
-  overflow: hidden;
+/* Highlighter strokes draw in after the copy lands */
+.hero[data-animate] :global(.mark) {
+  animation: draw 0.7s var(--ease-out) both;
+  animation-delay: 0.65s;
 }
 
-.scrollCue span {
-  display: block;
-  width: 100%;
-  height: 16px;
-  background: var(--accent-cyan);
-  animation: scrollCue 1.8s ease-in-out infinite;
+.hero[data-animate] p:nth-child(1) :global(.mark):nth-of-type(2) {
+  animation-delay: 0.85s;
 }
 
-@keyframes scrollCue {
-  0% {
-    transform: translateY(-100%);
+.hero[data-animate] p:nth-child(2) :global(.mark) {
+  animation-delay: 1.05s;
+}
+
+@keyframes draw {
+  from {
+    background-size: 0% 0.8em;
   }
-  100% {
-    transform: translateY(48px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scrollCue span {
-    animation: none;
-    height: 100%;
+  to {
+    background-size: 100% 0.8em;
   }
 }

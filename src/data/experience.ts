@@ -1,87 +1,106 @@
-export type DomainTag = 'Frontend' | 'Backend' | 'BI' | 'AI' | 'E-commerce'
+export interface Role {
+  title: string
+  period: string
+  bullets: string[]
+}
 
 export interface ExperienceEntry {
   id: string
-  role: string
   company: string
   period: string
-  tags: DomainTag[]
-  summary: string
-  bullets: string[]
+  roles: Role[]
 }
 
 export const experience: ExperienceEntry[] = [
   {
-    id: 'acumen-senior',
-    role: 'Senior Software Engineer (Frontend & Enterprise Applications)',
+    id: 'acumen',
     company: 'Acumen Online Ltd',
-    period: 'Oct 2021 – Present',
-    tags: ['Frontend', 'BI', 'AI'],
-    summary:
-      'Promoted into ownership of frontend architecture, then expanded into full Microsoft ecosystem delivery — Business Central, Power Platform, and Power BI — for a company building B2B and B2C e-commerce on the DNN platform.',
-    bullets: [
-      'Sole senior frontend engineer across multiple client projects, maintaining and extending DNN-based e-commerce solutions with React, Vue.js, AngularJS, and TypeScript.',
-      'Built and upgraded Dynamics 365 Business Central extensions and internal tooling; earned the Microsoft Certified: Dynamics 365 Business Central Developer Associate certification.',
-      'Designed end-to-end BI solutions in Power BI — semantic models, DAX measures, Power Query transformations — cleaning and validating source data with Python/Pandas and structuring it with dimensional modelling for high-performance analytics.',
-      'Applies AI across the full implementation spectrum (automation → augmentation → agency) using Anthropic’s 4D model: builds project-aware, multi-agent Claude workflows spanning frontend, backend, design, and testing, authoring custom skills, hooks, and slash commands, and integrating MCP servers to connect Claude directly to tools and data.',
-      'Manages delivery through Azure DevOps.',
-    ],
-  },
-  {
-    id: 'acumen-frontend',
-    role: 'Frontend Developer',
-    company: 'Acumen Online Ltd',
-    period: 'Jul 2019 – Oct 2021',
-    tags: ['Frontend'],
-    summary:
-      'Delivered pixel-accurate, responsive DNN storefronts and reusable interactive modules for e-commerce clients.',
-    bullets: [
-      'Developed and customised DNN themes and skins to match design specifications precisely.',
-      'Built reusable interactive modules using Vue.js, React.js, and AngularJS.',
-      'Developed TypeScript-based internal plugins integrated into Azure DevOps pipelines.',
-      'Managed development workflows and collaboration through Azure DevOps.',
+    period: 'Jul 2019 – Present',
+    roles: [
+      {
+        title: 'Senior Frontend Developer',
+        period: 'Oct 2021 – Present',
+        bullets: [
+          'Own frontend and technical architecture across all client projects as the sole senior frontend engineer, partnering directly with project managers to shape solutions, set standards, and resolve issues.',
+          'Designed a reusable application skin framework that standardised frontend development and accelerated delivery across multiple DNN implementations.',
+          'Drove the migration from AngularJS to React + TypeScript as the modern frontend standard, leading adoption where budget allowed while maintaining legacy DNN modules.',
+          'Architecting an internal delivery platform from the ground up with Next.js, React, TypeScript, and Tailwind CSS — task logging, project and test management, resourcing, and time tracking.',
+          'Built an AI-assisted documentation platform in Python that converts PDF, DOCX, and PPTX into Markdown for MkDocs, with a Flask layer for authentication and category-level access control.',
+          'Build AI-augmented workflows with Claude Code — agent skills, sub-agents, and MCP integrations — and used the same approach to learn Power BI and deliver semantic models, DAX measures, and Power Query transformations.',
+          'Deliver client e-commerce on DNN, nopCommerce, and Shopify (Liquid); extend into Dynamics 365 Business Central AL, Power Automate, and Power Pages; maintain a React Native app via Expo.',
+          'Mentored and code-reviewed two junior developers while the team was at full strength.',
+        ],
+      },
+      {
+        title: 'Frontend Developer',
+        period: 'Jul 2019 – Oct 2021',
+        bullets: [
+          'Led frontend development from the ground up for the multi-tenant SaaS e-commerce product (AngularJS), letting clients self-provision subscription storefronts on a shared platform-plus-plugin architecture.',
+          'Developed B2B and B2C e-commerce solutions on DNN with pixel-accurate, tailored storefronts for enterprise clients.',
+          'Built reusable components and interactive modules in Vue.js, AngularJS, React.js, and TypeScript.',
+        ],
+      },
     ],
   },
   {
     id: 'ora',
-    role: 'Full Stack Developer',
-    company: 'ORA International Trading Limited',
+    company: 'Ora International Trading Limited',
     period: 'Jan 2018 – Jun 2019',
-    tags: ['Backend', 'E-commerce'],
-    summary:
-      'Led secondary development of a commercial multi-tenant e-commerce platform built on OpenCart, architecting the multi-storefront system underneath it.',
-    bullets: [
-      'Architected an agent-based storefront system letting agents register, launch sub-storefronts, and run independent online stores under centralised product and module management.',
-      'Restructured the database schema to support the extended multi-tenant architecture.',
-      'Developed and integrated third-party APIs to extend platform functionality.',
+    roles: [
+      {
+        title: 'Full Stack Developer',
+        period: 'Jan 2018 – Jun 2019',
+        bullets: [
+          'Built a custom ERP, CRM, and e-commerce platform from the ground up for an import/export retailer with seven Auckland stores and several hundred reseller agents.',
+          'Delivered shelf- and bin-level warehouse inventory, supply-chain management, pricing, sales-driven stock allocation, inter-store transfers, and in-store POS.',
+          'Extended OpenCart into a multi-tenant agent storefront: tiered pricing per agent, agent-managed customer tiers, ordering on customers’ behalf, and scheduled promotion sync.',
+          'Owned frontend architecture end-to-end, establishing coding standards and a webpack build with automated deployment.',
+          'Restructured the database for scalability and integrated third-party APIs, including POS.',
+        ],
+      },
     ],
   },
   {
     id: 'craftdog',
-    role: 'Full Stack Developer',
     company: 'Craftdog',
     period: 'Jan 2017 – Dec 2017',
-    tags: ['Frontend', 'Backend'],
-    summary:
-      'Delivered full-stack client work spanning custom WordPress builds and lightweight web applications.',
-    bullets: [
-      'Built and customised WordPress themes and plugins tailored to client requirements.',
-      'Developed lightweight web applications using React.js and Node.js.',
-      'Delivered full-stack solutions across HTML, CSS, JavaScript, PHP, and MySQL.',
+    roles: [
+      {
+        title: 'Full Stack Developer',
+        period: 'Jan 2017 – Dec 2017',
+        bullets: [
+          'Developed and maintained WordPress / WooCommerce, OpenCart, and Magento sites, building custom themes and plugins across PHP, MySQL, and JavaScript.',
+        ],
+      },
     ],
   },
   {
     id: 'moustache-republic',
-    role: 'Junior Web Developer (Magento)',
     company: 'Moustache Republic',
     period: 'Apr 2016 – Dec 2016',
-    tags: ['E-commerce'],
-    summary:
-      'Started out building pixel-perfect Magento storefronts from design mockups.',
-    bullets: [
-      'Developed and customised Magento 1 & 2 e-commerce storefronts, matching design mockups precisely.',
-      'Built custom Magento modules and performed platform upgrades and patch management.',
-      'Worked across HTML, CSS, JavaScript, jQuery, PHP, and MySQL with Git for version control.',
+    roles: [
+      {
+        title: 'Web Developer',
+        period: 'Apr 2016 – Dec 2016',
+        bullets: [
+          'Delivered Magento 1 & 2 theme and plugin development, upgrades, and maintenance with pixel-perfect responsive designs.',
+        ],
+      },
+    ],
+  },
+  {
+    id: '3a-print',
+    company: '3A Print',
+    period: 'Aug 2015 – Mar 2016',
+    roles: [
+      {
+        title: 'Full Stack Developer',
+        period: 'Aug 2015 – Mar 2016',
+        bullets: [
+          'Built custom WordPress themes, plugins, and WooCommerce stores, plus OpenCart themes, from supplied designs.',
+          'Owned server, domain, and email administration for client sites.',
+        ],
+      },
     ],
   },
 ]

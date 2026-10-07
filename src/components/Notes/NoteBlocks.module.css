@@ -1,0 +1,192 @@
+.blocks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.p {
+  color: var(--ink-soft);
+}
+
+.h3 {
+  margin-top: var(--space-3);
+  font-size: var(--step-h3);
+}
+
+.list,
+.ordered {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  color: var(--ink-soft);
+}
+
+.list {
+  list-style: none;
+}
+
+.list li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 0.55rem;
+  height: 1.5px;
+  background: var(--cobalt);
+}
+
+.ordered {
+  padding-left: 1.4rem;
+}
+
+.ordered li::marker {
+  font-family: var(--font-mono);
+  font-size: var(--step-small);
+  color: var(--cobalt);
+}
+
+/* Term / explanation pairs, like a drawing's legend */
+.defs {
+  margin: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.defs > div {
+  display: grid;
+  gap: var(--space-1) var(--space-4);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (min-width: 640px) {
+  .defs > div {
+    grid-template-columns: 11rem minmax(0, 1fr);
+  }
+}
+
+.defs dt {
+  font-weight: 600;
+  font-size: var(--step-small);
+}
+
+.defs dd {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: var(--step-small);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+}
+
+.table {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+  font-size: var(--step-small);
+}
+
+.table caption {
+  caption-side: top;
+  text-align: left;
+  padding: var(--space-3) var(--space-3) var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--step-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cobalt);
+}
+
+.table th,
+.table td {
+  padding: 0.6rem var(--space-3);
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--rule);
+}
+
+.table thead th {
+  font-weight: 600;
+  background: var(--paper);
+}
+
+.table tbody th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table td {
+  color: var(--ink-soft);
+}
+
+.callout {
+  padding: var(--space-3) var(--space-4);
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--marker);
+  border-radius: var(--radius-sm);
+  font-size: var(--step-small);
+}
+
+.calloutLabel {
+  margin-bottom: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--step-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.timeline {
+  margin: var(--space-2) 0;
+}
+
+.timelineBar {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.timelineBar li {
+  flex-basis: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  background: var(--sheet);
+  border: 1px solid var(--rule-strong);
+  border-top: 4px solid var(--cobalt);
+}
+
+.timelineBar li.emphasis {
+  border-top-color: var(--marker);
+  background: var(--marker-tint);
+}
+
+.minutes {
+  font-family: var(--font-mono);
+  font-size: var(--step-small);
+  font-weight: 500;
+}
+
+.segmentLabel {
+  font-size: var(--step-caption);
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+
+.timeline figcaption {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--step-caption);
+  color: var(--ink-soft);
+}
