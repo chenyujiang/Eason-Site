@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-16T00:00:00Z",
+  "title": "Design System: Eason Site",
+  "extensions": {
+    "colorMeta": {
+      "drafting-cobalt": { "role": "primary", "displayName": "Drafting Cobalt", "canonical": "#2747d6", "tonalRamp": ["oklch(22% 0.12 268)", "oklch(32% 0.17 268)", "oklch(42% 0.21 268)", "oklch(48% 0.22 268)", "oklch(60% 0.17 268)", "oklch(72% 0.11 268)", "oklch(84% 0.06 268)", "oklch(94% 0.025 268)"] },
+      "cobalt-tint": { "role": "primary", "displayName": "Cobalt Tint", "canonical": "#e4e9fb" },
+      "highlighter-yellow": { "role": "secondary", "displayName": "Highlighter Yellow", "canonical": "#ffe45c", "tonalRamp": ["oklch(30% 0.06 98)", "oklch(42% 0.09 98)", "oklch(55% 0.12 98)", "oklch(68% 0.15 98)", "oklch(80% 0.16 98)", "oklch(91% 0.16 98)", "oklch(95% 0.09 98)", "oklch(98% 0.04 98)"] },
+      "highlighter-tint": { "role": "secondary", "displayName": "Highlighter Tint", "canonical": "#fffbe0" },
+      "navy-ink": { "role": "neutral", "displayName": "Navy Ink", "canonical": "#15233f", "tonalRamp": ["oklch(15% 0.05 262)", "oklch(25% 0.06 262)", "oklch(35% 0.05 262)", "oklch(45% 0.045 262)", "oklch(58% 0.035 262)", "oklch(70% 0.025 262)", "oklch(84% 0.015 262)", "oklch(95% 0.007 262)"] },
+      "ink-soft": { "role": "neutral", "displayName": "Ink Soft", "canonical": "#4a5670" },
+      "drafting-film": { "role": "neutral", "displayName": "Drafting Film", "canonical": "#edf1f5" },
+      "sheet": { "role": "neutral", "displayName": "Sheet", "canonical": "#ffffff" },
+      "rule": { "role": "neutral", "displayName": "Rule", "canonical": "#d3dbe5" },
+      "rule-strong": { "role": "neutral", "displayName": "Rule Strong", "canonical": "#b4c0cf" },
+      "grid-line": { "role": "neutral", "displayName": "Grid Line", "canonical": "rgba(39, 71, 214, 0.055)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The hero name only; surname at weight 300 in cobalt." },
+      "headline": { "displayName": "Headline", "purpose": "Section and page titles." },
+      "title": { "displayName": "Title", "purpose": "Company names and sub-sections." },
+      "lead": { "displayName": "Lead", "purpose": "Hero role line and first summary paragraph." },
+      "body": { "displayName": "Body", "purpose": "Running text, 60-68ch." },
+      "small": { "displayName": "Small", "purpose": "Nav links, skill lists, callout text." },
+      "label": { "displayName": "Label", "purpose": "Mono uppercase annotations: dates, captions, numbers, callout labels." }
+    },
+    "shadows": [
+      { "name": "sheet", "value": "0 1px 0 rgba(21, 35, 63, 0.04), 0 8px 24px -16px rgba(21, 35, 63, 0.25)", "purpose": "The single elevation: a white sheet pinned on the drafting film." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "All transitions and entrances." },
+      { "name": "duration-fast", "value": "160ms", "purpose": "Hover and colour state changes." },
+      { "name": "duration-med", "value": "420ms", "purpose": "Diagram fills and larger state changes." }
+    ],
+    "breakpoints": [
+      { "name": "header-wrap", "value": "560px" },
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "900px" },
+      { "name": "lg", "value": "1000px" },
+      { "name": "rail", "value": "1100px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Tool-like outlined button used for recovery actions.",
+      "html": "<button class=\"ds-button\">Reload page</button>",
+      "css": ".ds-button { min-height: 2.75rem; padding: 0.5rem 1.5rem; background: var(--sheet, #fff); border: 1.5px solid var(--ink, #15233f); border-radius: 3px; font: 500 1rem 'IBM Plex Sans', system-ui, sans-serif; color: var(--ink, #15233f); cursor: pointer; transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-button:hover { background: var(--marker-tint, #fffbe0); } .ds-button:focus-visible { outline: 2px solid var(--cobalt, #2747d6); outline-offset: 3px; }"
+    },
+    {
+      "name": "Sheet Card",
+      "kind": "card",
+      "refersTo": "sheet-card",
+      "description": "White sheet pinned on the drafting film.",
+      "html": "<div class=\"ds-film\"><div class=\"ds-sheet\"><p class=\"ds-sheet-label\">2019 – present</p><p>Content that needs a surface sits on a sheet.</p></div></div>",
+      "css": ".ds-film { padding: 1.5rem; background-color: #edf1f5; background-image: linear-gradient(rgba(39,71,214,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(39,71,214,0.055) 1px, transparent 1px); background-size: 24px 24px; } .ds-sheet { padding: 1.5rem; background: #fff; border: 1px solid #d3dbe5; border-radius: 6px; box-shadow: 0 1px 0 rgba(21,35,63,0.04), 0 8px 24px -16px rgba(21,35,63,0.25); color: #15233f; font-family: 'IBM Plex Sans', system-ui, sans-serif; } .ds-sheet-label { margin: 0 0 0.5rem; font: 500 0.78rem 'IBM Plex Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: #2747d6; }"
+    },
+    {
+      "name": "Callout",
+      "kind": "custom",
+      "refersTo": "callout",
+      "description": "Notes callout with a highlighter-yellow label tag.",
+      "html": "<aside class=\"ds-callout\"><span class=\"ds-callout-label\">Keep</span><p>Cache at the edge before you shard the database.</p></aside>",
+      "css": ".ds-callout { padding: 1rem 1.5rem; background: #fff; border: 1px solid #b4c0cf; border-radius: 3px; font: 400 0.9rem/1.65 'IBM Plex Sans', system-ui, sans-serif; color: #15233f; } .ds-callout p { margin: 0; } .ds-callout-label { display: inline-block; margin-bottom: 0.5rem; padding-inline: 0.3em; background: #ffe45c; font: 500 0.78rem 'IBM Plex Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: #15233f; }"
+    },
+    {
+      "name": "Header Nav",
+      "kind": "nav",
+      "refersTo": "header-link",
+      "description": "Sticky header links; current page gets a white fill and cobalt underline.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Profile</a><a href=\"#\">System Design</a><a href=\"#\">AI Workflow</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 0.25rem; padding: 0.5rem; background: #edf1f5; border-bottom: 1px solid #d3dbe5; font-family: 'IBM Plex Sans', system-ui, sans-serif; } .ds-nav a { padding: 0.4rem 0.7rem; border-radius: 3px; font-size: 0.9rem; font-weight: 500; color: #4a5670; text-decoration: none; transition: color 160ms, background-color 160ms; } .ds-nav a:hover { color: #15233f; background: #fff; } .ds-nav a[aria-current='page'] { color: #15233f; background: #fff; box-shadow: inset 0 -2px 0 #2747d6; } .ds-nav a:focus-visible { outline: 2px solid #2747d6; outline-offset: 3px; }"
+    },
+    {
+      "name": "Rail Nav",
+      "kind": "nav",
+      "refersTo": "rail-link",
+      "description": "Side rail / TOC with a 2px cobalt marker on the current item.",
+      "html": "<ul class=\"ds-rail\"><li><a href=\"#\">About</a></li><li><a href=\"#\" aria-current=\"location\">Experience</a></li><li><a href=\"#\">Skills</a></li></ul>",
+      "css": ".ds-rail { list-style: none; margin: 0; padding: 0; border-left: 1px solid #b4c0cf; font-family: 'IBM Plex Sans', system-ui, sans-serif; } .ds-rail a { display: block; padding: 0.35rem 0 0.35rem 1rem; margin-left: -1px; border-left: 2px solid transparent; font-size: 0.9rem; line-height: 1.35; color: #4a5670; text-decoration: none; } .ds-rail a:hover { color: #15233f; } .ds-rail a[aria-current='location'] { color: #15233f; font-weight: 500; border-left-color: #2747d6; }"
+    },
+    {
+      "name": "Highlighter Mark",
+      "kind": "custom",
+      "description": "The signature ==mark== highlighter stroke inside running text.",
+      "html": "<p class=\"ds-prose\">Ten years of <mark class=\"ds-mark\">New Zealand experience</mark> shipping web apps.</p>",
+      "css": ".ds-prose { margin: 0; font: 400 1rem/1.65 'IBM Plex Sans', system-ui, sans-serif; color: #15233f; } .ds-mark { background: linear-gradient(#ffe45c, #ffe45c) 0 70% / 100% 0.8em no-repeat; padding-inline: 0.15em; margin-inline: -0.15em; color: inherit; -webkit-box-decoration-break: clone; box-decoration-break: clone; }"
+    },
+    {
+      "name": "Timeline Bullets",
+      "kind": "custom",
+      "description": "Experience bullets with short cobalt dashes under a heavy ink rule.",
+      "html": "<ul class=\"ds-bullets\"><li>Led the AngularJS to React + TypeScript migration.</li><li>Set frontend coding standards.</li></ul>",
+      "css": ".ds-bullets { list-style: none; margin: 0; padding: 1rem 0 0; border-top: 1.5px solid #15233f; display: flex; flex-direction: column; gap: 0.5rem; font: 400 1rem/1.65 'IBM Plex Sans', system-ui, sans-serif; color: #4a5670; } .ds-bullets li { position: relative; padding-left: 1.25rem; } .ds-bullets li::before { content: ''; position: absolute; left: 0; top: 0.72em; width: 0.55rem; height: 1.5px; background: #2747d6; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Annotated Drafting Sheet",
+    "overview": "The site is an engineer's working sheet laid on drafting film. A faint cobalt grid covers the page. White sheets are pinned on top for the content that needs a surface. The reader's eye is guided the way a reviewer marks up a drawing: navy ink for the text, a cobalt pen for structure and links, and a yellow highlighter for the few phrases that matter most.\n\nThe mood is precise, calm and working-grade. Density is moderate: generous vertical rhythm between sections, tight and orderly inside them. Expression lives in the details: the highlighter stroke, mono labels, heavy ink rules on section tops, hand-drawn line icons and the step-by-step architecture diagram. It does not come from color fields, gradients or ornament.\n\nThe system is light only. Dark mode, gradients and soft, heavily rounded cards are rejected.",
+    "keyCharacteristics": [
+      "Drafting-film grid background (24px cells) under every page.",
+      "Navy ink text, cobalt as the single pen color, yellow highlighter as the signature mark.",
+      "White sheets with a 1px rule and a barely-there shadow, small corners (3–6px).",
+      "Mono uppercase labels for metadata, captions and section numbers.",
+      "Heavy 1.5px ink rules mark the top of major lists and sections."
+    ],
+    "rules": [
+      { "name": "The One Pen Rule", "body": "Cobalt is the only accent ink. No second hue for links, labels or states.", "section": "colors" },
+      { "name": "The Highlighter Is a Mark Rule", "body": "Yellow marks a phrase or a label; it never fills a large area. A tinted surface may not hold `==marks==`, because they would wash out.", "section": "colors" },
+      { "name": "The Annotation Rule", "body": "If it reads like a note in a margin (a date, a count, a category), it is set in mono. Prose is never mono.", "section": "typography" },
+      { "name": "The No Kicker Rule", "body": "No eyebrow labels above headings. A heading stands on its own; context goes in the intro paragraph below it.", "section": "typography" },
+      { "name": "The Pinned Sheet Rule", "body": "One elevation only. A sheet is either on the film or it is part of the film.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the drafting grid on every page background.",
+      "Do use cobalt as the single accent and the highlighter for at most a few phrases per section.",
+      "Do set dates, periods, counts and categories in mono uppercase labels with 0.06em tracking.",
+      "Do put content that needs a surface on a white sheet with a 1px rule and the sheet shadow.",
+      "Do honour reduced motion: entrances and the highlighter draw degrade to static."
+    ],
+    "donts": [
+      "Don't add a dark mode.",
+      "Don't use colour gradients for fills or backgrounds; gradients only build the hard-edged grid lines and highlighter stroke.",
+      "Don't use soft, heavily rounded cards; corners stay at 3–6px.",
+      "Don't put eyebrow kickers above headings.",
+      "Don't add colored side stripes wider than 1px to cards or callouts.",
+      "Don't fill large areas with highlighter yellow."
+    ]
+  }
+}
