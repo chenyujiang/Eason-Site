@@ -3,11 +3,10 @@
 }
 
 .name {
-  margin-top: var(--space-3);
   font-size: var(--step-h1);
   font-weight: 750;
   line-height: 0.92;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.04em;
 }
 
 /* Surname set lighter, like a drafting title block's second line */
@@ -16,18 +15,37 @@
   color: var(--cobalt);
 }
 
+/* Role and discipline, read straight after the name */
+.role {
+  margin-top: var(--space-3);
+  font-size: var(--step-lead);
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
 .body {
   display: grid;
   gap: var(--space-5);
   margin-top: var(--space-5);
   padding-top: var(--space-4);
-  border-top: 1.5px solid var(--ink);
+  border-top: var(--stroke-heavy) solid var(--ink);
 }
 
 @media (min-width: 900px) {
   .body {
     grid-template-columns: minmax(0, 1fr) 19rem;
     gap: var(--space-6);
+  }
+
+  /* The sheet comes first in the DOM so phones see contact early; desktop pins it right */
+  .notes {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .summary {
+    grid-column: 1;
+    grid-row: 1;
   }
 }
 
@@ -36,7 +54,7 @@
   flex-direction: column;
   gap: var(--space-3);
   max-width: 62ch;
-  color: var(--ink-soft);
+  color: var(--ink);
 }
 
 .lead {
@@ -47,12 +65,9 @@
 
 /* Margin notes — set like annotations in a technical drawing */
 .notes {
+  composes: sheet from global;
   align-self: start;
   padding: var(--space-4);
-  background: var(--sheet);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sheet);
 }
 
 .notes dl {
@@ -65,7 +80,7 @@
 .notes dt {
   font-family: var(--font-mono);
   font-size: var(--step-caption);
-  letter-spacing: 0.06em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--ink-soft);
 }
@@ -74,6 +89,14 @@
   margin: 0;
   font-size: var(--step-small);
   overflow-wrap: anywhere;
+}
+
+@media (pointer: coarse) {
+  .notes dd a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tap-min);
+  }
 }
 
 /* Highlighter strokes draw in after the copy lands */

@@ -114,15 +114,13 @@ button {
   top: var(--space-3);
 }
 
-/* Small mono label above headings */
-.eyebrow {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: var(--step-caption);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--cobalt);
+/* Raised white sheet pinned to the drafting film; modules opt in with
+   `composes: sheet from global` */
+.sheet {
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sheet);
 }
 
 /* Highlighter stroke — the site's signature mark */
@@ -150,14 +148,29 @@ button {
   border: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+/*
+ * Reduced motion is handled where the movement lives, not with a global
+ * kill: useReducedMotion gates the Framer Motion entrances, the hero's
+ * highlighter draw (data-animate) and smooth scrolling. The CSS transitions
+ * left running are colour and border changes only, which still confirm
+ * hover and the active step without moving anything.
+ */
+
+/*
+ * Windows contrast themes drop backgrounds, gradients and box-shadows, which
+ * erases the highlighter and most "you are here" states. Restore both with
+ * cues that survive: an underline and a system-coloured outline.
+ */
+@media (forced-colors: active) {
+  .mark {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+
+  [aria-current='page'],
+  [aria-current='location'] {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
   }
 }
 

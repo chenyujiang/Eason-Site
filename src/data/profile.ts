@@ -5,7 +5,6 @@ export const profile = {
   location: 'Auckland, New Zealand',
   citizenship: 'NZ Citizen',
   email: 'nz.eason.chen@gmail.com',
-  phone: { label: '021 0286 6801', href: 'tel:+642102866801' },
   links: {
     linkedin: { label: 'linkedin.com/in/chenyujiang', href: 'https://linkedin.com/in/chenyujiang' },
     github: { label: 'github.com/chenyujiang', href: 'https://github.com/chenyujiang' },

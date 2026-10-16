@@ -6,7 +6,6 @@ export function Experience() {
   return (
     <Section
       id="experience"
-      eyebrow="Experience"
       title="Ten years of shipping in New Zealand"
     >
       <ol className={styles.timeline}>

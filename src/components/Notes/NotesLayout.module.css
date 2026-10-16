@@ -97,10 +97,14 @@
 }
 
 .mobileToc summary {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-min);
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: var(--step-caption);
-  letter-spacing: 0.06em;
+  font-size: var(--step-small);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--cobalt);
 }
@@ -128,6 +132,15 @@
   line-height: 1.35;
   color: var(--ink-soft);
   text-decoration: none;
+}
+
+@media (pointer: coarse) {
+  .toc a,
+  .tocNumbered a {
+    display: flex;
+    align-items: center;
+    min-height: var(--tap-min);
+  }
 }
 
 .tocNumbered a::before {

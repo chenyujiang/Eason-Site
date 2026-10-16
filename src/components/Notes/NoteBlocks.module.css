@@ -36,7 +36,7 @@
   left: 0;
   top: 0.72em;
   width: 0.55rem;
-  height: 1.5px;
+  height: var(--stroke-heavy);
   background: var(--cobalt);
 }
 
@@ -100,7 +100,7 @@
   padding: var(--space-3) var(--space-3) var(--space-2);
   font-family: var(--font-mono);
   font-size: var(--step-caption);
-  letter-spacing: 0.06em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--cobalt);
 }
@@ -143,17 +143,20 @@
 .callout {
   padding: var(--space-3) var(--space-4);
   background: var(--sheet);
-  border: 1px solid var(--rule);
-  border-left: 4px solid var(--marker);
+  border: 1px solid var(--rule-strong);
   border-radius: var(--radius-sm);
   font-size: var(--step-small);
 }
 
+/* The label carries the highlighter, so the slip needs no coloured edge */
 .calloutLabel {
-  margin-bottom: var(--space-1);
+  display: inline-block;
+  margin-bottom: var(--space-2);
+  padding-inline: 0.3em;
+  background: var(--marker);
   font-family: var(--font-mono);
   font-size: var(--step-caption);
-  letter-spacing: 0.06em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--ink);
 }

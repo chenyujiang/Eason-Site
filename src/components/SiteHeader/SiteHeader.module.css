@@ -2,7 +2,9 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(237, 241, 245, 0.88);
+  /* Solid paper where color-mix() is unsupported */
+  background: var(--paper);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--rule);
@@ -35,7 +37,7 @@
   place-items: center;
   width: 2rem;
   height: 2rem;
-  border: 1.5px solid var(--ink);
+  border: var(--stroke-heavy) solid var(--ink);
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -76,6 +78,14 @@
 
 .short {
   display: none;
+}
+
+@media (pointer: coarse) {
+  .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tap-min);
+  }
 }
 
 /* Short labels on narrow screens; the full label stays for screen readers */

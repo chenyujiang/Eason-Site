@@ -18,7 +18,7 @@
   top: 0;
   left: 1.25rem;
   height: var(--space-4);
-  border-left: 1.5px solid var(--rule-strong);
+  border-left: var(--stroke-heavy) solid var(--rule-strong);
 }
 
 .pipeline li + li::after {
@@ -50,7 +50,6 @@
 .stage[aria-current='location'] {
   border-color: var(--ink);
   background: var(--marker-tint);
-  box-shadow: inset 4px 0 0 var(--marker);
 }
 
 .stageTitle {
@@ -81,6 +80,9 @@
 }
 
 .loop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   margin-top: var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--step-caption);
@@ -102,7 +104,7 @@
 .handoffLabel {
   color: var(--cobalt);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: var(--tracking-label);
 }
 
 .handoffLabel::after {

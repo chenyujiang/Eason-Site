@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { platforms } from '../../data/platforms'
 import { Section } from '../Section/Section'
 import styles from './Platforms.module.css'
@@ -11,13 +11,12 @@ export function Platforms({ reducedMotion }: PlatformsProps) {
   return (
     <Section
       id="platforms"
-      eyebrow="Built from zero"
       title="Three platforms, each built from the ground up"
       intro="Not themes or plugins on someone else’s system — whole platforms, from the data model to the storefront."
     >
       <ol className={styles.track}>
         {platforms.map((platform, i) => (
-          <motion.li
+          <m.li
             key={platform.id}
             className={styles.card}
             initial={reducedMotion ? undefined : { opacity: 0, y: 18 }}
@@ -37,7 +36,7 @@ export function Platforms({ reducedMotion }: PlatformsProps) {
               ))}
             </ul>
             <p className={styles.stack}>{platform.stack}</p>
-          </motion.li>
+          </m.li>
         ))}
       </ol>
     </Section>

@@ -1,6 +1,6 @@
 .timeline {
   list-style: none;
-  border-top: 1.5px solid var(--ink);
+  border-top: var(--stroke-heavy) solid var(--ink);
 }
 
 .entry {
@@ -67,6 +67,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  max-width: 56ch;
   color: var(--ink-soft);
 }
 
@@ -81,6 +82,6 @@
   left: 0;
   top: 0.72em;
   width: 0.55rem;
-  height: 1.5px;
+  height: var(--stroke-heavy);
   background: var(--cobalt);
 }

@@ -23,6 +23,14 @@
   color: var(--ink-soft);
 }
 
+@media (pointer: coarse) {
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tap-min);
+  }
+}
+
 .links a:hover {
   color: var(--cobalt);
 }

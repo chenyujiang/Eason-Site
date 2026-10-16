@@ -1,3 +1,4 @@
+import { Icon, type IconName } from '../components/Icon/Icon'
 import { NotesLayout } from '../components/Notes/NotesLayout'
 import { ScaleDiagram } from '../components/ScaleDiagram/ScaleDiagram'
 import { hrefFor } from '../routes'
@@ -9,7 +10,7 @@ import {
 import styles from './SystemDesignPage.module.css'
 
 /** Sections after the numbered steps get a symbol in the step index. */
-const STEP_MARKS: Record<string, string> = { checklist: '✓', cloud: '☁︎' }
+const STEP_MARKS: Record<string, IconName> = { checklist: 'check', cloud: 'cloud' }
 
 interface SystemDesignPageProps {
   section: string | null
@@ -20,7 +21,6 @@ export default function SystemDesignPage({ section, reducedMotion }: SystemDesig
   return (
     <NotesLayout
       path="/system-design"
-      eyebrow="System design"
       title="Scale from zero to millions of users"
       intro={systemDesignIntro}
       sections={stages}
@@ -39,7 +39,7 @@ export default function SystemDesignPage({ section, reducedMotion }: SystemDesig
                     aria-current={s.id === activeId ? 'location' : undefined}
                     title={s.title}
                   >
-                    {STEP_MARKS[s.id] ?? i + 1}
+                    {STEP_MARKS[s.id] ? <Icon name={STEP_MARKS[s.id]} /> : i + 1}
                     <span className="visually-hidden">{s.title}</span>
                   </a>
                 </li>

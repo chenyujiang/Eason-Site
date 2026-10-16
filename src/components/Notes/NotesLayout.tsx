@@ -9,7 +9,6 @@ import styles from './NotesLayout.module.css'
 
 interface NotesLayoutProps {
   path: RoutePath
-  eyebrow: string
   title: string
   intro: string
   sections: NoteSection[]
@@ -25,7 +24,6 @@ interface NotesLayoutProps {
 
 export function NotesLayout({
   path,
-  eyebrow,
   title,
   intro,
   sections,
@@ -57,7 +55,6 @@ export function NotesLayout({
   return (
     <div className={styles.page}>
       <header className={`container ${styles.header}`}>
-        <p className="eyebrow">{eyebrow}</p>
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.intro}>
           <Marked text={intro} />

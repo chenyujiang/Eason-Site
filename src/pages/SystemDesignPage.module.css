@@ -27,6 +27,13 @@
   transition: background-color var(--duration-fast) var(--ease-out);
 }
 
+@media (pointer: coarse) {
+  .steps a {
+    width: var(--tap-min);
+    height: var(--tap-min);
+  }
+}
+
 .steps a:hover {
   border-color: var(--ink);
   color: var(--ink);
@@ -41,6 +48,23 @@
 /* On small screens each step carries its own snapshot of the diagram */
 .inlineDiagram {
   max-width: 30rem;
+}
+
+/*
+ * Phones: run the drawing edge to edge so it scales down less. The viewBox
+ * is 480 wide; inside the padded card its labels drop below 8px.
+ */
+@media (max-width: 639px) {
+  .inlineDiagram {
+    max-width: none;
+    margin-inline: calc(var(--space-4) * -1);
+  }
+
+  .inlineDiagram > figure {
+    padding-inline: var(--space-2);
+    border-inline: none;
+    border-radius: 0;
+  }
 }
 
 @media (min-width: 1000px) {

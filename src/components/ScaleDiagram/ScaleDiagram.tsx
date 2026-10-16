@@ -1,5 +1,6 @@
 import { useId } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { diagramEdges, diagramNodes, finalStage, stages, type DiagramNode } from '../../data/systemDesign'
 import styles from './ScaleDiagram.module.css'
 
@@ -93,7 +94,7 @@ export function ScaleDiagram({ stage, reducedMotion }: ScaleDiagramProps) {
           {edges.map((edge) => {
             const [x1, y1, x2, y2] = edge.points
             return (
-              <motion.line
+              <m.line
                 key={edge.id}
                 x1={x1}
                 y1={y1}
@@ -106,9 +107,9 @@ export function ScaleDiagram({ stage, reducedMotion }: ScaleDiagramProps) {
             )
           })}
           {nodes.map((node) => (
-            <motion.g key={node.id} {...fade}>
+            <m.g key={node.id} {...fade}>
               <Node node={node} isNew={node.from === stage && stage > 1} />
-            </motion.g>
+            </m.g>
           ))}
         </AnimatePresence>
       </svg>

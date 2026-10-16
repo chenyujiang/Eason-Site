@@ -6,7 +6,6 @@ export function Contact() {
     <section id="contact" className={styles.contact} aria-labelledby="contact-heading">
       <div className={`container ${styles.inner}`}>
         <div>
-          <p className="eyebrow">Contact</p>
           <h2 id="contact-heading" className={styles.heading}>
             Building something on the frontend? Let’s talk.
           </h2>
@@ -17,10 +16,6 @@ export function Contact() {
             <a href={`mailto:${profile.email}`} className={styles.primary}>
               {profile.email}
             </a>
-          </li>
-          <li>
-            <span className={styles.label}>Phone</span>
-            <a href={profile.phone.href}>{profile.phone.label}</a>
           </li>
           <li>
             <span className={styles.label}>LinkedIn</span>

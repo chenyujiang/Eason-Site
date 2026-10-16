@@ -1,13 +1,21 @@
-import { lazy, Suspense, useEffect, useRef } from 'react'
+import { lazy, Suspense, useEffect, useRef, type ComponentType } from 'react'
+import { domAnimation, LazyMotion } from 'framer-motion'
 import { useReducedMotion } from './hooks/useReducedMotion'
 import { useHashRoute } from './hooks/useHashRoute'
 import { SiteHeader } from './components/SiteHeader/SiteHeader'
 import { Footer } from './components/Footer/Footer'
+import { PageLoadError, PageLoading } from './components/PageStatus/PageStatus'
 import { HomePage } from './pages/HomePage'
 
-const SystemDesignPage = lazy(() => import('./pages/SystemDesignPage'))
-const FrontendDesignPage = lazy(() => import('./pages/FrontendDesignPage'))
-const AiWorkflowPage = lazy(() => import('./pages/AiWorkflowPage'))
+// A failed chunk download (offline, or a deploy replaced the hashed file)
+// resolves to an error page instead of throwing and blanking the whole app.
+function lazyPage<P>(load: () => Promise<{ default: ComponentType<P> }>) {
+  return lazy(() => load().catch(() => ({ default: PageLoadError as ComponentType<P> })))
+}
+
+const SystemDesignPage = lazyPage(() => import('./pages/SystemDesignPage'))
+const FrontendDesignPage = lazyPage(() => import('./pages/FrontendDesignPage'))
+const AiWorkflowPage = lazyPage(() => import('./pages/AiWorkflowPage'))
 
 const TITLES = {
   '/': 'Eason Chen — Senior Frontend Developer',
@@ -32,14 +40,16 @@ function App() {
   }, [path, section])
 
   return (
-    <>
+    // Components use the slim `m` elements; this supplies only the animation
+    // features they need, so the full `motion` bundle stays out of the build.
+    <LazyMotion features={domAnimation} strict>
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
       <SiteHeader currentPath={path} />
       <main id="main-content" ref={mainRef} tabIndex={-1} className="site-main">
         {path === '/' && <HomePage section={section} reducedMotion={reducedMotion} />}
-        <Suspense fallback={null}>
+        <Suspense fallback={<PageLoading />}>
           {path === '/system-design' && (
             <SystemDesignPage section={section} reducedMotion={reducedMotion} />
           )}
@@ -52,7 +62,7 @@ function App() {
         </Suspense>
       </main>
       <Footer />
-    </>
+    </LazyMotion>
   )
 }
 

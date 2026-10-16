@@ -12,14 +12,11 @@
 }
 
 .card {
+  composes: sheet from global;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   padding: var(--space-4);
-  background: var(--sheet);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sheet);
 }
 
 .cardHead {
@@ -70,7 +67,7 @@
   padding: 0.35rem 0.5rem;
   background: var(--sheet);
   border: 1px solid var(--rule-strong);
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   font-size: var(--step-caption);
   line-height: 1.35;
 }
@@ -82,4 +79,5 @@
   font-family: var(--font-mono);
   font-size: var(--step-caption);
   color: var(--ink-soft);
+  text-wrap: balance;
 }

@@ -1,0 +1,52 @@
+.status {
+  padding-block: var(--space-6);
+}
+
+/* Held back so a fast chunk load never flashes the line */
+.loading {
+  font-family: var(--font-mono);
+  font-size: var(--step-caption);
+  letter-spacing: var(--tracking-label);
+  color: var(--ink-soft);
+  opacity: 0;
+  animation: reveal var(--duration-fast) var(--ease-out) 600ms forwards;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+  }
+}
+
+.title {
+  font-size: var(--step-h2);
+}
+
+.body {
+  margin-top: var(--space-3);
+  max-width: 60ch;
+  color: var(--ink-soft);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.button {
+  min-height: var(--tap-min);
+  padding: var(--space-2) var(--space-4);
+  background: var(--sheet);
+  border: var(--stroke-heavy) solid var(--ink);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  color: var(--ink);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.button:hover {
+  background: var(--marker-tint);
+}

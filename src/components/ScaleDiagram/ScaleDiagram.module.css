@@ -1,10 +1,7 @@
 .figure {
+  composes: sheet from global;
   margin: 0;
   padding: var(--space-3);
-  background: var(--sheet);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sheet);
 }
 
 .svg {
@@ -33,7 +30,7 @@
 
 .label {
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   fill: var(--ink);
 }

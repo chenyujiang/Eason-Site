@@ -10,7 +10,6 @@ export default function FrontendDesignPage({ section, reducedMotion }: FrontendD
   return (
     <NotesLayout
       path="/frontend-system-design"
-      eyebrow="Frontend architecture"
       title="Frontend system design"
       intro={frontendDesignIntro}
       sections={frontendSections}

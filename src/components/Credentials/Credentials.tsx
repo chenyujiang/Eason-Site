@@ -4,7 +4,7 @@ import styles from './Credentials.module.css'
 
 export function Credentials() {
   return (
-    <Section id="credentials" eyebrow="Credentials" title="Certifications & education">
+    <Section id="credentials" title="Certifications & education">
       <div className={styles.columns}>
         <div>
           <h3 className={styles.heading}>Certifications</h3>

@@ -1,3 +1,4 @@
+import { Icon } from '../components/Icon/Icon'
 import { NotesLayout } from '../components/Notes/NotesLayout'
 import { hrefFor } from '../routes'
 import { aiWorkflowIntro, aiWorkflowSteps } from '../data/aiWorkflow'
@@ -14,7 +15,6 @@ export default function AiWorkflowPage({ section, reducedMotion }: AiWorkflowPag
   return (
     <NotesLayout
       path="/ai-workflow"
-      eyebrow="How I work with coding agents"
       title="From idea to shipped code"
       intro={aiWorkflowIntro}
       sections={aiWorkflowSteps}
@@ -37,7 +37,9 @@ export default function AiWorkflowPage({ section, reducedMotion }: AiWorkflowPag
               </li>
             ))}
           </ol>
-          <p className={styles.loop}>↺ What you learn feeds the next round</p>
+          <p className={styles.loop}>
+            <Icon name="loop" /> What you learn feeds the next round
+          </p>
         </nav>
       )}
       sectionLead={(s) => (
